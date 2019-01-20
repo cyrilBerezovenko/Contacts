@@ -1,6 +1,5 @@
 package org.itstep.controller;
 
-import org.itstep.view.AppException;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
@@ -14,7 +13,7 @@ public class CommandFactory implements ApplicationContextAware {
         try {
             return (Command) context.getBean(input.toLowerCase() + "Command");
         } catch(NoSuchBeanDefinitionException ex) {
-            throw new AppException("Invalid command");
+            throw new RuntimeException("Invalid command", ex);
         }
     }
 

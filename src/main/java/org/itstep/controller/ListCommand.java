@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.itstep.model.ContactService;
 import org.itstep.model.ContactSet;
 import org.itstep.model.JsonUtils;
-import org.itstep.view.View;
 
 import javax.servlet.http.HttpServletResponse;
 

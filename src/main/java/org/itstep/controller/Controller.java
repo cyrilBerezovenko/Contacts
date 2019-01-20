@@ -2,22 +2,16 @@ package org.itstep.controller;
 
 import lombok.*;
 import org.itstep.model.ContactService;
-import org.itstep.view.AppException;
-import org.itstep.view.View;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.Scanner;
 
 @RequiredArgsConstructor

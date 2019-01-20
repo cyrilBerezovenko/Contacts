@@ -2,10 +2,8 @@ package org.itstep.model;
 
 
 import lombok.*;
-import org.itstep.controller.ContactParser;
 import org.itstep.model.entities.Contact;
 import org.itstep.model.entities.SocialNetworkLink;
-import org.itstep.view.AppException;
 
 import java.util.HashSet;
 import java.util.stream.Collectors;
@@ -35,7 +33,7 @@ public class ContactService {
         if(matchingContact.getPhone().size() > 1 ||
                 matchingContact.getEmail().size() > 1 ||
                 matchingContact.getSocialNetworks().size() > 1) {
-            throw new AppException("find request cannot have multiple arguments");
+            throw new RuntimeException("find request cannot have multiple arguments");
         }
 
         foundContacts.addAll(
