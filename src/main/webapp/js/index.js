@@ -1,3 +1,4 @@
+
 function buildContact(contact) {
     var temp = document.getElementById('template');
     var cont = document.createElement('div');
