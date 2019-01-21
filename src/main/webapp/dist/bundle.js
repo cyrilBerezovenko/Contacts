@@ -146,21 +146,6 @@ exports.push([module.i, "", ""]);
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./src/main/webapp/js/Components/O_ContactList/O_ContactList.css":
-/*!*************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./src/main/webapp/js/Components/O_ContactList/O_ContactList.css ***!
-  \*************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
-// Module
-exports.push([module.i, "", ""]);
-
-
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/runtime/api.js":
 /*!*****************************************************!*\
   !*** ./node_modules/css-loader/dist/runtime/api.js ***!
@@ -24312,7 +24297,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function A_LoadButton(props) {
-  debugger;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: 'load-button',
     onClick: props.o_app.load.bind(props.o_app)
@@ -24524,7 +24508,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _M_Contact_M_Contact__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../M_Contact/M_Contact */ "./src/main/webapp/js/Components/M_Contact/M_Contact.js");
 /* harmony import */ var _A_Property_A_Property__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../A_Property/A_Property */ "./src/main/webapp/js/Components/A_Property/A_Property.js");
 /* harmony import */ var _A_LoadButton_A_LoadButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../A_LoadButton/A_LoadButton */ "./src/main/webapp/js/Components/A_LoadButton/A_LoadButton.js");
-/* harmony import */ var _O_ContactList_O_ContactList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../O_ContactList/O_ContactList */ "./src/main/webapp/js/Components/O_ContactList/O_ContactList.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24542,7 +24525,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 
 
 
@@ -24587,10 +24569,7 @@ function (_React$Component) {
         return _this2;
       }();
 
-      debugger;
-
       req.onreadystatechange = function () {
-        debugger;
         if (this.readyState !== 4) return;
         var json = this.getResponseHeader('contacts');
         var list = JSON.parse(json);
@@ -24603,6 +24582,8 @@ function (_React$Component) {
     key: "setList",
     value: function setList(list) {
       var newList = [];
+      var c = 0;
+      var cc = 0;
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
@@ -24616,13 +24597,13 @@ function (_React$Component) {
             if (!el.hasOwnProperty(p) || typeof el[p] !== 'string') continue;
             pr.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_Property_A_Property__WEBPACK_IMPORTED_MODULE_3__["default"], {
               value: el[p],
-              key: p
+              key: cc++
             }));
           }
 
           newList.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_M_Contact_M_Contact__WEBPACK_IMPORTED_MODULE_2__["default"], {
             properties: pr,
-            key: el
+            key: c++
           }));
         }
       } catch (err) {
@@ -24640,7 +24621,6 @@ function (_React$Component) {
         }
       }
 
-      debugger;
       this.setState({
         list: newList
       });
@@ -24648,14 +24628,13 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: 'app'
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_LoadButton_A_LoadButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
         o_app: this
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_O_ContactList_O_ContactList__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        list: this.state.list
-      }));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: 'contact-list'
+      }, this.state.list));
     }
   }]);
 
@@ -24663,60 +24642,6 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 
-
-/***/ }),
-
-/***/ "./src/main/webapp/js/Components/O_ContactList/O_ContactList.css":
-/*!***********************************************************************!*\
-  !*** ./src/main/webapp/js/Components/O_ContactList/O_ContactList.css ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../../../../node_modules/css-loader/dist/cjs.js!./O_ContactList.css */ "./node_modules/css-loader/dist/cjs.js!./src/main/webapp/js/Components/O_ContactList/O_ContactList.css");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./src/main/webapp/js/Components/O_ContactList/O_ContactList.js":
-/*!**********************************************************************!*\
-  !*** ./src/main/webapp/js/Components/O_ContactList/O_ContactList.js ***!
-  \**********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return O_ContactList; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _O_ContactList_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./O_ContactList.css */ "./src/main/webapp/js/Components/O_ContactList/O_ContactList.css");
-/* harmony import */ var _O_ContactList_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_O_ContactList_css__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function O_ContactList(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "contact-list"
-  }, props.list);
-}
 
 /***/ }),
 
