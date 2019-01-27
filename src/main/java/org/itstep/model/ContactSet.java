@@ -20,8 +20,8 @@ public class ContactSet extends TreeSet<Contact> {
 
     @Override
     public boolean add(Contact contact) {
-        if(contact == null || contact.getName() == null)
-            return false;
+//        if(contact == null || contact.getName() == null)
+//            return false;
         Object[] sameContact = stream()
                 .filter(cont -> cont.getName().equals(contact.getName()))
                 .toArray();

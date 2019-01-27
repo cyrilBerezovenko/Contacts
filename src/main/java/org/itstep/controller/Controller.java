@@ -7,7 +7,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,18 +26,17 @@ public class Controller extends HttpServlet implements ApplicationContextAware {
     private ApplicationContext context;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         setApplicationContext(new ClassPathXmlApplicationContext("context.xml"));
         this.contactService = (ContactService) context.getBean("contactService");
         this.commandFactory = (CommandFactory) context.getBean("commandFactory");
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String commandString = req.getHeader("command");
-        Command command = commandFactory.getCommand(commandString);
-        String args = req.getHeader("args");
-        command.execute(args, resp);
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+//        String commandString = req.getParameter("command");
+        Command command = commandFactory.getCommand("add");
+        command.execute(req, resp);
     }
 
     @Override

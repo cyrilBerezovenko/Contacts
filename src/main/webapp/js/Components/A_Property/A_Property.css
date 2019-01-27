@@ -1,0 +1,11 @@
+.property {
+    display: flex;
+}
+
+.property_add-button {
+    margin-left: 40px;
+    padding: 3px 5px;
+    border: none;
+    border-radius: 3px;
+    display: none;
+}

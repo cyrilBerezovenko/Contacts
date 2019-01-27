@@ -86,16 +86,31 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./src/main/webapp/js/Components/A_LoadButton/A_LoadButton.css":
-/*!***********************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./src/main/webapp/js/Components/A_LoadButton/A_LoadButton.css ***!
-  \***********************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/main/webapp/js/Components/A_AddButton/A_AddButton.css":
+/*!*********************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/main/webapp/js/Components/A_AddButton/A_AddButton.css ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(/*! ../../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".add-button {\r\n    background: #e4e4e4;\r\n    padding: 5px 10px;\r\n    border-radius: 3px;\r\n    border: none;\r\n    transition: .2s;\r\n    margin: 10px 0;\r\n    cursor: pointer;\r\n}\r\n\r\n.add-button:active {\r\n    background: #c3c3c3;\r\n}\r\n\r\n.add-button:focus {\r\n    outline: none;\r\n}", ""]);
+
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/main/webapp/js/Components/A_ListProperty/A_ListProperty.css":
+/*!***************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/main/webapp/js/Components/A_ListProperty/A_ListProperty.css ***!
+  \***************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, ".list-property-ul {\r\n    list-style-type: none;\r\n    margin-left: 20px;\r\n}", ""]);
 
 
 
@@ -110,7 +125,22 @@ exports.push([module.i, "", ""]);
 
 exports = module.exports = __webpack_require__(/*! ../../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".property {\r\n    display: flex;\r\n}\r\n\r\n.property_add-button {\r\n    margin-left: 40px;\r\n    padding: 3px 5px;\r\n    border: none;\r\n    border-radius: 3px;\r\n    display: none;\r\n}", ""]);
+
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/main/webapp/js/Components/A_SocialNetworksProperty/A_SocialNetworksProperty.css":
+/*!***********************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/main/webapp/js/Components/A_SocialNetworksProperty/A_SocialNetworksProperty.css ***!
+  \***********************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, ".list-property-ul {\r\n    list-style-type: none;\r\n    margin-left: 20px;\r\n}", ""]);
 
 
 
@@ -125,7 +155,7 @@ exports.push([module.i, "", ""]);
 
 exports = module.exports = __webpack_require__(/*! ../../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".contact {\r\n    margin: 20px 10px;\r\n    box-shadow: 0 0 2px black;\r\n    border-radius: 4px;\r\n    padding: 10px;\r\n    width: 40%;\r\n}", ""]);
 
 
 
@@ -140,7 +170,7 @@ exports.push([module.i, "", ""]);
 
 exports = module.exports = __webpack_require__(/*! ../../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "* {\r\n    margin: 0;\r\n    padding: 0;\r\n    font-family: \"Segoe UI\", sans-serif;\r\n}\r\n\r\n.app {\r\n    margin: 20px;\r\n}\r\n\r\n.popup {\r\n    width: 100%;\r\n    min-height: 100%;\r\n    background-color: rgba(0,0,0,0.5);\r\n    overflow: hidden;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n}\r\n\r\n.popup-content {\r\n    margin: 40px auto 0 auto;\r\n    width: fit-content;\r\n    height: fit-content;\r\n    padding: 20px;\r\n    background-color: #e0e0e0;\r\n    border-radius: 5px;\r\n    box-shadow: 0 0 6px #000;\r\n    position: relative;\r\n}\r\n\r\n.popup-content button:focus {\r\n    outline: none;\r\n}\r\n\r\n.popup-content .close-button {\r\n    position: absolute;\r\n    top: 5px;\r\n    right: 5px;\r\n    font-size: 20px;\r\n    padding: 0 4px;\r\n    border-radius: 3px;\r\n    border: none;\r\n    cursor: pointer;\r\n}\r\n\r\n.popup-content .send-button {\r\n    font-size: 20px;\r\n    padding: 0 4px;\r\n    border-radius: 3px;\r\n    border: none;\r\n    text-align: center;\r\n    background: unset;\r\n    width: 100%;\r\n    margin: 10px 0;\r\n    cursor: pointer;\r\n}", ""]);
 
 
 
@@ -24250,15 +24280,15 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./src/main/webapp/js/Components/A_LoadButton/A_LoadButton.css":
-/*!*********************************************************************!*\
-  !*** ./src/main/webapp/js/Components/A_LoadButton/A_LoadButton.css ***!
-  \*********************************************************************/
+/***/ "./src/main/webapp/js/Components/A_AddButton/A_AddButton.css":
+/*!*******************************************************************!*\
+  !*** ./src/main/webapp/js/Components/A_AddButton/A_AddButton.css ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../../../../node_modules/css-loader/dist/cjs.js!./A_LoadButton.css */ "./node_modules/css-loader/dist/cjs.js!./src/main/webapp/js/Components/A_LoadButton/A_LoadButton.css");
+var content = __webpack_require__(/*! !../../../../../../node_modules/css-loader/dist/cjs.js!./A_AddButton.css */ "./node_modules/css-loader/dist/cjs.js!./src/main/webapp/js/Components/A_AddButton/A_AddButton.css");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -24280,28 +24310,149 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./src/main/webapp/js/Components/A_LoadButton/A_LoadButton.js":
-/*!********************************************************************!*\
-  !*** ./src/main/webapp/js/Components/A_LoadButton/A_LoadButton.js ***!
-  \********************************************************************/
+/***/ "./src/main/webapp/js/Components/A_AddButton/A_AddButton.js":
+/*!******************************************************************!*\
+  !*** ./src/main/webapp/js/Components/A_AddButton/A_AddButton.js ***!
+  \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return A_LoadButton; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return A_AddButton; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _A_LoadButton_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./A_LoadButton.css */ "./src/main/webapp/js/Components/A_LoadButton/A_LoadButton.css");
-/* harmony import */ var _A_LoadButton_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_A_LoadButton_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _A_AddButton_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./A_AddButton.css */ "./src/main/webapp/js/Components/A_AddButton/A_AddButton.css");
+/* harmony import */ var _A_AddButton_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_A_AddButton_css__WEBPACK_IMPORTED_MODULE_1__);
 
 
-function A_LoadButton(props) {
+function A_AddButton(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: 'load-button',
-    onClick: props.o_app.load.bind(props.o_app)
+    className: 'add-button',
+    onClick: props.o_app.onAdd.bind(props.o_app)
   }, props.text);
 }
+
+/***/ }),
+
+/***/ "./src/main/webapp/js/Components/A_ListProperty/A_ListProperty.css":
+/*!*************************************************************************!*\
+  !*** ./src/main/webapp/js/Components/A_ListProperty/A_ListProperty.css ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../../node_modules/css-loader/dist/cjs.js!./A_ListProperty.css */ "./node_modules/css-loader/dist/cjs.js!./src/main/webapp/js/Components/A_ListProperty/A_ListProperty.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./src/main/webapp/js/Components/A_ListProperty/A_ListProperty.js":
+/*!************************************************************************!*\
+  !*** ./src/main/webapp/js/Components/A_ListProperty/A_ListProperty.js ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return A_ListProperty; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _A_ListProperty_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./A_ListProperty.css */ "./src/main/webapp/js/Components/A_ListProperty/A_ListProperty.css");
+/* harmony import */ var _A_ListProperty_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_A_ListProperty_css__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var A_ListProperty =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(A_ListProperty, _React$Component);
+
+  function A_ListProperty(props) {
+    var _this;
+
+    _classCallCheck(this, A_ListProperty);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(A_ListProperty).call(this, props));
+    _this.state = {
+      name: props.name
+    };
+
+    _this.setList(props.list);
+
+    return _this;
+  }
+
+  _createClass(A_ListProperty, [{
+    key: "setList",
+    value: function setList(list) {
+      var a = [];
+
+      for (var i in list) {
+        a.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: i
+        }, list[i]));
+      }
+
+      this.state.list = a;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "list-property"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "list-property-name"
+      }, this.state.name, ": "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: 'list-property-ul'
+      }, this.state.list), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "property_add-button",
+        onClick: this.state.onClick
+      }, "+"));
+    }
+  }]);
+
+  return A_ListProperty;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
 
 /***/ }),
 
@@ -24356,10 +24507,112 @@ function A_Property(props) {
     className: "property"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "property_value"
-  }, props.value), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "property_add-button"
-  }, props.onClick));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, props.name), ": ", props.value));
 }
+
+/***/ }),
+
+/***/ "./src/main/webapp/js/Components/A_SocialNetworksProperty/A_SocialNetworksProperty.css":
+/*!*********************************************************************************************!*\
+  !*** ./src/main/webapp/js/Components/A_SocialNetworksProperty/A_SocialNetworksProperty.css ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../../node_modules/css-loader/dist/cjs.js!./A_SocialNetworksProperty.css */ "./node_modules/css-loader/dist/cjs.js!./src/main/webapp/js/Components/A_SocialNetworksProperty/A_SocialNetworksProperty.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./src/main/webapp/js/Components/A_SocialNetworksProperty/A_SocialNetworksProperty.js":
+/*!********************************************************************************************!*\
+  !*** ./src/main/webapp/js/Components/A_SocialNetworksProperty/A_SocialNetworksProperty.js ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return A_SocialNetworksProperty; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _A_SocialNetworksProperty_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./A_SocialNetworksProperty.css */ "./src/main/webapp/js/Components/A_SocialNetworksProperty/A_SocialNetworksProperty.css");
+/* harmony import */ var _A_SocialNetworksProperty_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_A_SocialNetworksProperty_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _A_ListProperty_A_ListProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../A_ListProperty/A_ListProperty */ "./src/main/webapp/js/Components/A_ListProperty/A_ListProperty.js");
+/* harmony import */ var _A_Property_A_Property__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../A_Property/A_Property */ "./src/main/webapp/js/Components/A_Property/A_Property.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+var A_SocialNetworksProperty =
+/*#__PURE__*/
+function (_A_ListProperty) {
+  _inherits(A_SocialNetworksProperty, _A_ListProperty);
+
+  function A_SocialNetworksProperty() {
+    _classCallCheck(this, A_SocialNetworksProperty);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(A_SocialNetworksProperty).apply(this, arguments));
+  }
+
+  _createClass(A_SocialNetworksProperty, [{
+    key: "setList",
+    value: function setList(list) {
+      var a = [];
+
+      for (var i in list) {
+        a.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_Property_A_Property__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          name: list[i]['socialNetwork'].toLowerCase(),
+          value: list[i]['link'],
+          key: i
+        }));
+      }
+
+      this.state.list = a;
+    }
+  }]);
+
+  return A_SocialNetworksProperty;
+}(_A_ListProperty_A_ListProperty__WEBPACK_IMPORTED_MODULE_2__["default"]);
+
+
 
 /***/ }),
 
@@ -24507,7 +24760,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _O_App_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_O_App_css__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _M_Contact_M_Contact__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../M_Contact/M_Contact */ "./src/main/webapp/js/Components/M_Contact/M_Contact.js");
 /* harmony import */ var _A_Property_A_Property__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../A_Property/A_Property */ "./src/main/webapp/js/Components/A_Property/A_Property.js");
-/* harmony import */ var _A_LoadButton_A_LoadButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../A_LoadButton/A_LoadButton */ "./src/main/webapp/js/Components/A_LoadButton/A_LoadButton.js");
+/* harmony import */ var _A_ListProperty_A_ListProperty__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../A_ListProperty/A_ListProperty */ "./src/main/webapp/js/Components/A_ListProperty/A_ListProperty.js");
+/* harmony import */ var _A_SocialNetworksProperty_A_SocialNetworksProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../A_SocialNetworksProperty/A_SocialNetworksProperty */ "./src/main/webapp/js/Components/A_SocialNetworksProperty/A_SocialNetworksProperty.js");
+/* harmony import */ var _A_AddButton_A_AddButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../A_AddButton/A_AddButton */ "./src/main/webapp/js/Components/A_AddButton/A_AddButton.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24532,6 +24787,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var O_App =
 /*#__PURE__*/
 function (_React$Component) {
@@ -24546,6 +24803,9 @@ function (_React$Component) {
     _this.state = {
       list: []
     };
+
+    _this.load();
+
     return _this;
   }
 
@@ -24558,53 +24818,130 @@ function (_React$Component) {
   }, {
     key: "load",
     value: function load() {
-      var _this2 = this;
-
       var req = new XMLHttpRequest();
-      req.open('GET', './controller');
-      req.setRequestHeader('command', 'list');
-      req.setRequestHeader('args', '');
-
-      var app = function () {
-        return _this2;
-      }();
+      req.open('GET', './controller?command=list');
+      var app = this;
 
       req.onreadystatechange = function () {
         if (this.readyState !== 4) return;
-        var json = this.getResponseHeader('contacts');
+        var json = this.responseText;
         var list = JSON.parse(json);
-        app.setList.apply(app, [list]);
+        app.setContacts.apply(app, [list]);
       };
 
-      req.send();
+      req.send('');
     }
   }, {
-    key: "setList",
-    value: function setList(list) {
-      var newList = [];
-      var c = 0;
-      var cc = 0;
+    key: "onAdd",
+    value: function onAdd() {
+      var close = function () {
+        this.setState({
+          popup: undefined
+        });
+      }.bind(this);
+
+      var addFunc = this.add.bind(this);
+      this.setState({
+        popup: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: 'popup'
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: 'popup-content'
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "close-button",
+          onClick: close
+        }, "X"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          id: "popup-form"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          name: "name"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Surname : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          name: "surname"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Skype : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          name: "skype"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Phone : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+          name: "phone"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Email : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+          name: "email"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Social networks : "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+          name: "socialNetworks"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "send-button",
+          onClick: addFunc
+        }, "Add")))
+      });
+    }
+  }, {
+    key: "add",
+    value: function add() {
+      var form = document.querySelector('#popup-form');
+      var res = {};
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
 
       try {
-        for (var _iterator = list[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var el = _step.value;
-          var pr = [];
+        for (var _iterator = form.elements[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var inp = _step.value;
 
-          for (var p in el) {
-            if (!el.hasOwnProperty(p) || typeof el[p] !== 'string') continue;
-            pr.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_Property_A_Property__WEBPACK_IMPORTED_MODULE_3__["default"], {
-              value: el[p],
-              key: cc++
-            }));
+          if (inp.tagName === 'INPUT') {
+            res[inp.name] = inp.value.trim();
+          } else if (inp.name === 'socialNetworks') {
+            res[inp.name] = [];
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+              for (var _iterator2 = inp.value.split('\n')[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                var line = _step2.value;
+                var obj = {};
+                var s = line.trim().split(' ');
+                obj.socialNetwork = s[0].toUpperCase();
+                obj.link = s[1] || '';
+                res[inp.name].push(obj);
+              }
+            } catch (err) {
+              _didIteratorError2 = true;
+              _iteratorError2 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                  _iterator2.return();
+                }
+              } finally {
+                if (_didIteratorError2) {
+                  throw _iteratorError2;
+                }
+              }
+            }
+          } else {
+            res[inp.name] = [];
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
+
+            try {
+              for (var _iterator3 = inp.value.split('\n')[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                var _line = _step3.value;
+                res[inp.name].push(_line.trim());
+              }
+            } catch (err) {
+              _didIteratorError3 = true;
+              _iteratorError3 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+                  _iterator3.return();
+                }
+              } finally {
+                if (_didIteratorError3) {
+                  throw _iteratorError3;
+                }
+              }
+            }
           }
-
-          newList.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_M_Contact_M_Contact__WEBPACK_IMPORTED_MODULE_2__["default"], {
-            properties: pr,
-            key: c++
-          }));
         }
       } catch (err) {
         _didIteratorError = true;
@@ -24621,6 +24958,80 @@ function (_React$Component) {
         }
       }
 
+      var json = JSON.stringify(res);
+      var req = new XMLHttpRequest();
+      req.open('GET', './controller?command=add');
+      var app = this;
+
+      req.onreadystatechange = function () {
+        if (this.readyState !== 4) return;
+        app.load();
+      };
+
+      console.log(json);
+      req.send(json);
+    }
+  }, {
+    key: "setContacts",
+    value: function setContacts(list) {
+      var newList = [];
+      var c = 0;
+      var cc = 0;
+      var _iteratorNormalCompletion4 = true;
+      var _didIteratorError4 = false;
+      var _iteratorError4 = undefined;
+
+      try {
+        for (var _iterator4 = list[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+          var el = _step4.value;
+          var pr = [];
+
+          for (var p in el) {
+            if (!el.hasOwnProperty(p)) continue;
+
+            if (el[p][0]['socialNetwork']) {
+              console.log(el[p]);
+              pr.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_SocialNetworksProperty_A_SocialNetworksProperty__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                name: 'socialNetworks',
+                list: el[p],
+                key: cc++
+              }));
+            } else if (typeof el[p] === 'string') {
+              pr.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_Property_A_Property__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                name: p,
+                value: el[p],
+                key: cc++
+              }));
+            } else if (_typeof(el[p]) === 'object') {
+              console.log(el[p]);
+              pr.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_ListProperty_A_ListProperty__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                name: p,
+                list: el[p],
+                key: cc++
+              }));
+            }
+          }
+
+          newList.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_M_Contact_M_Contact__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            properties: pr,
+            key: c++
+          }));
+        }
+      } catch (err) {
+        _didIteratorError4 = true;
+        _iteratorError4 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
+            _iterator4.return();
+          }
+        } finally {
+          if (_didIteratorError4) {
+            throw _iteratorError4;
+          }
+        }
+      }
+
       this.setState({
         list: newList
       });
@@ -24630,11 +25041,12 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: 'app'
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_LoadButton_A_LoadButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        o_app: this
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_AddButton_A_AddButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        o_app: this,
+        text: 'Add'
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: 'contact-list'
-      }, this.state.list));
+      }, this.state.list), this.state.popup);
     }
   }]);
 
@@ -24662,7 +25074,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_O_App_O_App__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.querySelector('#root'));
+var app = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Components_O_App_O_App__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(app, document.querySelector('#root'));
 
 /***/ })
 

@@ -6,6 +6,7 @@ import org.itstep.model.entities.Contact;
 import org.itstep.model.entities.SocialNetworkLink;
 
 import java.util.HashSet;
+import java.util.IllegalFormatException;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor
@@ -14,13 +15,17 @@ import java.util.stream.Collectors;
 public class ContactService {
 
     private ContactSet contacts = new ContactSet();
+    private String filename;
 
     public ContactService(String filename) {
         this.contacts = JsonUtils.readContacts(filename);
+        this.filename = filename;
     }
 
     public void addContact(Contact contact) {
-        contacts.add(contact);
+        if(!contacts.add(contact)) {
+            throw new IllegalStateException();
+        }
     }
 
     public void addContacts(ContactSet contactSet) {

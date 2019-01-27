@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.app {
+    margin: 20px;
+}
+
+.popup {
+    width: 100%;
+    min-height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.popup-content {
+    margin: 40px auto 0 auto;
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    box-shadow: 0 0 6px #000;
+    position: relative;
+}
+
+.popup-content button:focus {
+    outline: none;
+}
+
+.popup-content .close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    padding: 0 4px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+
+.popup-content .send-button {
+    font-size: 20px;
+    padding: 0 4px;
+    border-radius: 3px;
+    border: none;
+    text-align: center;
+    background: unset;
+    width: 100%;
+    margin: 10px 0;
+    cursor: pointer;
+}
