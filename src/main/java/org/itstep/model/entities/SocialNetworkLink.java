@@ -2,7 +2,7 @@ package org.itstep.model.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NonNull;
 
 @Data
 @AllArgsConstructor(staticName = "of")

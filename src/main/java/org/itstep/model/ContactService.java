@@ -22,10 +22,8 @@ public class ContactService {
         this.filename = filename;
     }
 
-    public void addContact(Contact contact) {
-        if(!contacts.add(contact)) {
-            throw new IllegalStateException();
-        }
+    public boolean addContact(Contact contact) {
+        return contacts.add(contact);
     }
 
     public void addContacts(ContactSet contactSet) {

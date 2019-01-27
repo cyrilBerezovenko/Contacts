@@ -17,6 +17,7 @@ public class FindCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        contactService.setContacts(JsonUtils.readContacts(contactService.getFilename()));
         String json = req.getReader().lines().reduce("", (a,b) -> a + b);
         Contact matchingContact = JsonUtils.getContactFromJson(json);
         ContactSet foundContacts = contactService.findContacts(matchingContact);

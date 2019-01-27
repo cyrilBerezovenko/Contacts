@@ -24660,6 +24660,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _M_Contact_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./M_Contact.css */ "./src/main/webapp/js/Components/M_Contact/M_Contact.css");
 /* harmony import */ var _M_Contact_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_M_Contact_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _A_SocialNetworksProperty_A_SocialNetworksProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../A_SocialNetworksProperty/A_SocialNetworksProperty */ "./src/main/webapp/js/Components/A_SocialNetworksProperty/A_SocialNetworksProperty.js");
+/* harmony import */ var _A_Property_A_Property__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../A_Property/A_Property */ "./src/main/webapp/js/Components/A_Property/A_Property.js");
+/* harmony import */ var _A_ListProperty_A_ListProperty__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../A_ListProperty/A_ListProperty */ "./src/main/webapp/js/Components/A_ListProperty/A_ListProperty.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24681,6 +24684,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
+
 var M_Contact =
 /*#__PURE__*/
 function (_React$Component) {
@@ -24693,12 +24699,43 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(M_Contact).call(this, props));
     _this.state = {
-      properties: props.properties
+      properties: _this.parseContact(props.properties)
     };
     return _this;
   }
 
   _createClass(M_Contact, [{
+    key: "parseContact",
+    value: function parseContact(cont) {
+      var pr = [];
+
+      for (var p in cont) {
+        if (!cont.hasOwnProperty(p) || cont[p] == false) continue;
+
+        if (cont[p][0]['socialNetwork']) {
+          pr.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_SocialNetworksProperty_A_SocialNetworksProperty__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            name: 'socialNetworks',
+            list: cont[p],
+            key: 'socialNetworks'
+          }));
+        } else if (typeof cont[p] === 'string') {
+          pr.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_Property_A_Property__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            name: p,
+            value: cont[p],
+            key: p
+          }));
+        } else if (_typeof(cont[p]) === 'object') {
+          pr.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_ListProperty_A_ListProperty__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            name: p,
+            list: cont[p],
+            key: p
+          }));
+        }
+      }
+
+      return pr;
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -24826,6 +24863,8 @@ function (_React$Component) {
         if (this.readyState !== 4) return;
         var json = this.responseText;
         var list = JSON.parse(json);
+        console.log(json);
+        console.log(list);
         app.setContacts.apply(app, [list]);
       };
 
@@ -24868,7 +24907,10 @@ function (_React$Component) {
           name: "socialNetworks"
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "send-button",
-          onClick: addFunc
+          onClick: function onClick() {
+            addFunc();
+            close();
+          }
         }, "Add")))
       });
     }
@@ -24886,20 +24928,22 @@ function (_React$Component) {
           var inp = _step.value;
 
           if (inp.tagName === 'INPUT') {
-            res[inp.name] = inp.value.trim();
+            res[inp.name] = inp.value.trim() || null;
           } else if (inp.name === 'socialNetworks') {
             res[inp.name] = [];
+            var lines = inp.value.split('\n');
+            if (lines.length === 1 && lines[0] === '') continue;
             var _iteratorNormalCompletion2 = true;
             var _didIteratorError2 = false;
             var _iteratorError2 = undefined;
 
             try {
-              for (var _iterator2 = inp.value.split('\n')[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+              for (var _iterator2 = lines[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
                 var line = _step2.value;
                 var obj = {};
                 var s = line.trim().split(' ');
                 obj.socialNetwork = s[0].toUpperCase();
-                obj.link = s[1] || '';
+                obj.link = s[1] || null;
                 res[inp.name].push(obj);
               }
             } catch (err) {
@@ -24918,14 +24962,18 @@ function (_React$Component) {
             }
           } else {
             res[inp.name] = [];
+
+            var _lines = inp.value.split('\n');
+
+            if (_lines.length === 1 && _lines[0] === '') continue;
             var _iteratorNormalCompletion3 = true;
             var _didIteratorError3 = false;
             var _iteratorError3 = undefined;
 
             try {
-              for (var _iterator3 = inp.value.split('\n')[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+              for (var _iterator3 = _lines[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
                 var _line = _step3.value;
-                res[inp.name].push(_line.trim());
+                res[inp.name].push(_line.trim() || null);
               }
             } catch (err) {
               _didIteratorError3 = true;
@@ -24960,23 +25008,72 @@ function (_React$Component) {
 
       var json = JSON.stringify(res);
       var req = new XMLHttpRequest();
-      req.open('GET', './controller?command=add');
+      req.open('POST', './controller?command=add');
       var app = this;
 
       req.onreadystatechange = function () {
         if (this.readyState !== 4) return;
-        app.load();
+
+        if (this.responseText === 'true') {
+          var matchingContact = {
+            name: res.name
+          };
+          app.find(matchingContact, function (obj) {
+            return function () {
+              if (this.readyState !== 4) return;
+              var list = JSON.parse(this.responseText);
+
+              if (list.length !== 0) {
+                var ind = undefined;
+
+                for (var i in app.state.list) {
+                  if (app.state.list[i].key === res.name) {
+                    var lst = app.state.list;
+                    delete lst[i];
+                    ind = i;
+                    app.setState({
+                      list: lst
+                    });
+                    break;
+                  }
+                }
+
+                app.addContact(list[0], ind);
+              }
+            }.bind(obj);
+          });
+        }
       };
 
       console.log(json);
       req.send(json);
     }
   }, {
+    key: "find",
+    value: function find(matchingContact, callbackfn) {
+      var json = JSON.stringify(matchingContact);
+      var req = new XMLHttpRequest(); // should not be POST
+
+      req.open('POST', './controller?command=find');
+      req.onreadystatechange = callbackfn(req);
+      req.send(json);
+    }
+  }, {
+    key: "addContact",
+    value: function addContact(prop, ind) {
+      var newList = this.state.list;
+      newList[ind || newList.length] = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_M_Contact_M_Contact__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        properties: prop,
+        key: prop.name
+      });
+      this.setState({
+        list: newList
+      });
+    }
+  }, {
     key: "setContacts",
     value: function setContacts(list) {
       var newList = [];
-      var c = 0;
-      var cc = 0;
       var _iteratorNormalCompletion4 = true;
       var _didIteratorError4 = false;
       var _iteratorError4 = undefined;
@@ -24984,37 +25081,9 @@ function (_React$Component) {
       try {
         for (var _iterator4 = list[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
           var el = _step4.value;
-          var pr = [];
-
-          for (var p in el) {
-            if (!el.hasOwnProperty(p)) continue;
-
-            if (el[p][0]['socialNetwork']) {
-              console.log(el[p]);
-              pr.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_SocialNetworksProperty_A_SocialNetworksProperty__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                name: 'socialNetworks',
-                list: el[p],
-                key: cc++
-              }));
-            } else if (typeof el[p] === 'string') {
-              pr.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_Property_A_Property__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                name: p,
-                value: el[p],
-                key: cc++
-              }));
-            } else if (_typeof(el[p]) === 'object') {
-              console.log(el[p]);
-              pr.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_ListProperty_A_ListProperty__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                name: p,
-                list: el[p],
-                key: cc++
-              }));
-            }
-          }
-
           newList.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_M_Contact_M_Contact__WEBPACK_IMPORTED_MODULE_2__["default"], {
-            properties: pr,
-            key: c++
+            properties: el,
+            key: el.name
           }));
         }
       } catch (err) {

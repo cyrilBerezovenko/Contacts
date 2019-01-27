@@ -34,8 +34,8 @@ public class Controller extends HttpServlet implements ApplicationContextAware {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-//        String commandString = req.getParameter("command");
-        Command command = commandFactory.getCommand("add");
+        String commandString = req.getParameter("command");
+        Command command = commandFactory.getCommand(commandString);
         command.execute(req, resp);
     }
 

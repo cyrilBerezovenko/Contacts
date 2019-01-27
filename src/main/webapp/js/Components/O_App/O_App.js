@@ -1,9 +1,6 @@
 import React from 'react'
 import './O_App.css'
 import M_Contact from '../M_Contact/M_Contact';
-import A_Property from "../A_Property/A_Property";
-import A_ListProperty from "../A_ListProperty/A_ListProperty";
-import A_SocialNetworksProperty from "../A_SocialNetworksProperty/A_SocialNetworksProperty";
 import A_AddButton from "../A_AddButton/A_AddButton";
 
 
@@ -31,6 +28,8 @@ export default class O_App extends React.Component {
             if(this.readyState !== 4) return;
             let json = this.responseText;
             let list = JSON.parse(json);
+            console.log(json);
+            console.log(list);
             app.setContacts.apply(app, [list]);
         };
 
@@ -59,7 +58,7 @@ export default class O_App extends React.Component {
                             <p>Social networks : </p>
                             <textarea name='socialNetworks'/>
                         </form>
-                        <button className='send-button' onClick={addFunc}>Add</button>
+                        <button className='send-button' onClick={() => {addFunc();close();}}>Add</button>
                     </div>
                 </div>
             )
@@ -72,62 +71,88 @@ export default class O_App extends React.Component {
 
         for(let inp of form.elements) {
             if(inp.tagName === 'INPUT') {
-                res[inp.name] = inp.value.trim();
+                res[inp.name] = inp.value.trim() || null;
             } else if(inp.name === 'socialNetworks') {
                 res[inp.name] = [];
-                for(let line of inp.value.split('\n')) {
+                let lines = inp.value.split('\n');
+                if(lines.length === 1 && lines[0] === '')
+                    continue;
+                for(let line of lines) {
                     let obj = {};
                     let s = line.trim().split(' ');
                     obj.socialNetwork = s[0].toUpperCase();
-                    obj.link = s[1] || '';
+                    obj.link = s[1] || null;
                     res[inp.name].push(obj);
                 }
             } else {
                 res[inp.name] = [];
-                for(let line of inp.value.split('\n')) {
-                    res[inp.name].push(line.trim());
+                let lines = inp.value.split('\n');
+                if(lines.length === 1 && lines[0] === '')
+                    continue;
+                for(let line of lines) {
+                    res[inp.name].push(line.trim() || null);
                 }
             }
         }
 
         let json = JSON.stringify(res);
         let req = new XMLHttpRequest();
-        req.open('GET', './controller?command=add');
+        req.open('POST', './controller?command=add');
         let app = this;
 
         req.onreadystatechange = function() {
             if(this.readyState !== 4) return;
-            app.load();
+            if(this.responseText === 'true') {
+                let matchingContact = {
+                    name: res.name
+                };
+                app.find(matchingContact,(obj) => (function() {
+                    if(this.readyState !== 4) return;
+                let list = JSON.parse(this.responseText);
+                if(list.length !== 0) {
+                    let ind = undefined;
+                    for(let i in app.state.list) {
+                        if(app.state.list[i].key === res.name) {
+                            let lst = app.state.list;
+                            delete lst[i];
+                            ind = i;
+                            app.setState({
+                                list: lst
+                            });
+                            break;
+                        }
+                    }
+                    app.addContact(list[0], ind);
+                }
+                }).bind(obj));
+            }
         };
         console.log(json);
         req.send(json);
     }
 
+    find(matchingContact, callbackfn) {
+        let json = JSON.stringify(matchingContact);
+        let req = new XMLHttpRequest();
+        // should not be POST
+        req.open('POST', './controller?command=find');
+        req.onreadystatechange = callbackfn(req);
+        req.send(json);
+    }
+
+    addContact(prop, ind) {
+        let newList = this.state.list;
+        newList[ind || newList.length] = <M_Contact properties={prop} key={prop.name}/>;
+        this.setState({
+            list: newList
+        });
+    }
+
     setContacts(list) {
         let newList = [];
-        let c = 0;
-        let cc = 0;
         for(let el of list) {
-            let pr = [];
-            for(let p in el) {
-                if(!el.hasOwnProperty(p)) continue;
-                if(el[p][0]['socialNetwork']) {
-                    console.log(el[p]);
-                    pr.push(
-                        <A_SocialNetworksProperty name={'socialNetworks'} list={el[p]} key={cc++}/>);
-                }
-                else if(typeof el[p] === 'string') {
-                    pr.push(
-                        <A_Property name={p} value={el[p]} key={cc++}/>);
-                }
-                else if(typeof el[p] === 'object') {
-                    console.log(el[p]);
-                    pr.push(
-                        <A_ListProperty name={p} list={el[p]} key={cc++}/>);
-                }
-            }
             newList.push(
-                <M_Contact properties={pr} key={c++}/>
+                <M_Contact properties={el} key={el.name}/>
             );
         }
         this.setState({

@@ -2,6 +2,7 @@ package org.itstep.model;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 import org.itstep.model.entities.Contact;
 
 import java.io.*;
