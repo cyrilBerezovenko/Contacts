@@ -2,21 +2,28 @@ package org.itstep.controller;
 
 import lombok.AllArgsConstructor;
 import org.itstep.model.ContactService;
-import org.itstep.model.ContactSet;
 import org.itstep.model.JsonUtils;
+import org.itstep.model.entities.Contact;
+import org.springframework.http.ResponseEntity;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 @AllArgsConstructor
 public class ListCommand implements Command {
 
-    ContactService contactService;
+    private ContactService contactService;
 
     @Override
-    public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        ContactSet contacts = JsonUtils.readContacts(contactService.getFilename());
-        resp.getWriter().print(JsonUtils.contactSetToJson(contacts));
+    public ResponseEntity execute(String requestBody) throws IOException{
+        try {
+            List<Contact> list = contactService.list();
+            String json = JsonUtils.contactListToJson(list);
+            return  ResponseEntity.ok(json);
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+            return ResponseEntity.status(500).build();
+        }
     }
 }

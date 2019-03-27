@@ -2,45 +2,54 @@ package org.itstep.controller;
 
 import lombok.*;
 import org.itstep.model.ContactService;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Scanner;
+import java.io.FileNotFoundException;
 
-@RequiredArgsConstructor
+import static org.itstep.model.JsonUtils.readFile;
+
+@AllArgsConstructor
 @Getter
 @Setter
 @NoArgsConstructor
-public class Controller extends HttpServlet implements ApplicationContextAware {
+@RestController
+@RequestMapping("/api")
+public class Controller {
 
-    @NonNull ContactService contactService;
-    @NonNull CommandFactory commandFactory;
-    Scanner scanner = new Scanner(System.in);
+    @Autowired
+    ContactService contactService;
 
-    private ApplicationContext context;
+    @Autowired
+    CommandFactory commandFactory;
 
-    @Override
-    public void init() {
-        setApplicationContext(new ClassPathXmlApplicationContext("context.xml"));
-        this.contactService = (ContactService) context.getBean("contactService");
-        this.commandFactory = (CommandFactory) context.getBean("commandFactory");
+    @GetMapping("/contacts")
+    public ResponseEntity getHtml() throws FileNotFoundException {
+        String body = readFile("./src/main/webapp/index.html");
+        return ResponseEntity.ok(body);
     }
 
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String commandString = req.getParameter("command");
-        Command command = commandFactory.getCommand(commandString);
-        command.execute(req, resp);
+    @GetMapping("/bundle.js")
+    public ResponseEntity getJS() throws FileNotFoundException {
+        String body = readFile("./src/main/webapp/dist/bundle.js");
+        return ResponseEntity.ok(body);
     }
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.context = applicationContext;
+    @GetMapping("/service/{command}")
+    public ResponseEntity doGet(@PathVariable String command, @RequestBody(required = false) String body) throws Exception {
+        Command c = commandFactory.getCommand(command);
+        if(c == null)
+            return ResponseEntity.badRequest().build();
+        return c.execute(body);
     }
+
+    @PostMapping("/service/{command}")
+    public ResponseEntity doPost(@PathVariable String command, @RequestBody(required = false) String body) throws Exception {
+        Command c = commandFactory.getCommand(command);
+        if(c == null)
+            return ResponseEntity.badRequest().build();
+        return c.execute(body);
+    }
+
 }

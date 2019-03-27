@@ -1,0 +1,1 @@
+insert into contactbase.contacts(name, surname, skype) values('%s', '%s', '%s');

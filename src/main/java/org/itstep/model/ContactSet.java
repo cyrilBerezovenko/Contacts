@@ -1,12 +1,14 @@
 package org.itstep.model;
 
 import org.itstep.model.entities.Contact;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.TreeSet;
 
+@Component
 public class ContactSet extends TreeSet<Contact> {
 
     public ContactSet() {

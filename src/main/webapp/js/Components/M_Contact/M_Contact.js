@@ -16,7 +16,7 @@ export default class M_Contact extends React.Component {
     parseContact(cont) {
         let pr = [];
         for(let p in cont) {
-            if(!cont.hasOwnProperty(p) || cont[p] == false) continue;
+            if(!cont.hasOwnProperty(p) || cont[p] == false || cont[p] === 'null') continue;
             if(cont[p][0]['socialNetwork']) {
                 pr.push(
                     <A_SocialNetworksProperty name={'socialNetworks'} list={cont[p]} key={'socialNetworks'}/>);

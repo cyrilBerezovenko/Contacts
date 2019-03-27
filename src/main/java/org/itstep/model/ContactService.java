@@ -1,81 +1,107 @@
 package org.itstep.model;
 
-
 import lombok.*;
 import org.itstep.model.entities.Contact;
+import org.itstep.model.entities.SocialNetwork;
 import org.itstep.model.entities.SocialNetworkLink;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
-import java.util.IllegalFormatException;
-import java.util.stream.Collectors;
+import javax.annotation.PreDestroy;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-@NoArgsConstructor
+import static org.itstep.model.JsonUtils.readFile;
+
 @Setter
 @Getter
+@Component
 public class ContactService {
 
-    private ContactSet contacts = new ContactSet();
-    private String filename;
+    public static final String URL = "jdbc:postgresql://localhost:5433/contactbase";
+    public static final String LOGIN = "postgres";
+    public static final String PASSWORD = "qwertyy6";
 
-    public ContactService(String filename) {
-        this.contacts = JsonUtils.readContacts(filename);
-        this.filename = filename;
+    private Connection connection;
+
+    public ContactService() throws SQLException {
+        connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
     }
 
-    public boolean addContact(Contact contact) {
-        return contacts.add(contact);
+    @PreDestroy
+    public void onDestroy() throws SQLException {
+        connection.close();
     }
 
-    public void addContacts(ContactSet contactSet) {
-        contacts.addAll(contactSet);
-    }
+    public List<Contact> list() throws SQLException, IOException {
+        PreparedStatement query = connection.prepareStatement("select * from contactbase.contacts");
+        ResultSet resultSet = query.executeQuery();
+        List<Contact> list = new ArrayList<>();
 
-    public ContactSet findContacts(Contact matchingContact) {
-        ContactSet foundContacts = new ContactSet();
+        while(resultSet.next()) {
+            Contact contact = Contact.builder()
+                                .name(resultSet.getString("name"))
+                                .surname(resultSet.getString("surname"))
+                                .skype(resultSet.getString("skype"))
+                                .build();
 
-        if(matchingContact.getPhone().size() > 1 ||
-                matchingContact.getEmail().size() > 1 ||
-                matchingContact.getSocialNetworks().size() > 1) {
-            throw new RuntimeException("find request cannot have multiple arguments");
+            int id = Integer.parseInt(resultSet.getString("id"));
+            
+            PreparedStatement emailQuery = connection.prepareStatement(
+                    readFile("./src/main/resources/static/select_emails.sql"));
+            emailQuery.setInt(1, id);
+            emailQuery.setInt(2, id);
+            ResultSet emailRes = emailQuery.executeQuery();
+            while(emailRes.next()) {
+                contact.getEmail().add(
+                        emailRes.getString("email"));
+            }
+            emailQuery.close();
+
+            PreparedStatement phoneQuery = connection.prepareStatement(
+                    readFile("./src/main/resources/static/select_phones.sql"));
+            phoneQuery.setInt(1, id);
+            phoneQuery.setInt(2, id);
+            ResultSet phoneRes = phoneQuery.executeQuery();
+            while(phoneRes.next()) {
+                contact.getPhone().add(
+                        phoneRes.getString("phone"));
+            }
+            phoneQuery.close();
+
+            PreparedStatement networkQuery = connection.prepareStatement(
+                    readFile("./src/main/resources/static/select_networks.sql"));
+            networkQuery.setInt(1, id);
+            networkQuery.setInt(2, id);
+            ResultSet networkRes = networkQuery.executeQuery();
+            while(networkRes.next()) {
+                SocialNetwork network = SocialNetwork.valueOf(networkRes.getString("network").toUpperCase());
+                String link = networkRes.getString("link");
+                contact.getSocialNetworks().add(
+                        SocialNetworkLink.of(network, link));
+            }
+            networkQuery.close();
+
+            list.add(contact);
         }
 
-        foundContacts.addAll(
-                contacts.stream()
-                        .filter(contact -> matchesStringProperty(contact.getName(), matchingContact.getName()))
-                        .filter(contact -> matchesStringProperty(contact.getSurname(), matchingContact.getSurname()))
-                        .filter(contact -> matchesStringProperty(contact.getSkype(), matchingContact.getSkype()))
-                        .filter(contact -> matchesSetProperty(contact.getPhone(), matchingContact.getPhone()))
-                        .filter(contact -> matchesSetProperty(contact.getEmail(), matchingContact.getEmail()))
-                        .filter(contact -> matchesSocialNetworks(contact.getSocialNetworks(), matchingContact.getSocialNetworks()))
-                        .collect(Collectors.toSet())
-        );
-
-        return foundContacts;
+        query.close();
+        return list;
     }
 
-    boolean matchesStringProperty(String name, String matchingName) {
-        if(name == null)
-            return matchingName == null;
-
-        return matchingName == null || name.contains(matchingName);
-    }
-
-    boolean matchesSetProperty(HashSet<String> phone, HashSet<String> matchingPhoneSet) {
-        if(phone.isEmpty())
-            return matchingPhoneSet.isEmpty();
-
-        return matchingPhoneSet.isEmpty() ||
-                phone.stream().anyMatch(
-                        str -> str.contains((String)matchingPhoneSet.toArray()[0]));
-    }
-
-    boolean matchesSocialNetworks(HashSet<SocialNetworkLink> networks,  HashSet<SocialNetworkLink> matchingNetworkSet) {
-        if(networks.isEmpty() || matchingNetworkSet.isEmpty())
-            return matchingNetworkSet.isEmpty();
-
-        SocialNetworkLink matchingLink = (SocialNetworkLink)matchingNetworkSet.toArray()[0];
-        return networks.stream().anyMatch(link ->
-                        link.getSocialNetwork().equals(matchingLink.getSocialNetwork()) &&
-                                link.getLink().contains(matchingLink.getLink()));
+    public void add(Contact contact) throws SQLException, IOException {
+        String sql = readFile("./src/main/resources/static/contact_insert.sql");
+        sql = String.format(sql, contact.getName(), contact.getSurname(), contact.getSkype());
+        PreparedStatement query = connection.prepareStatement(sql);
+        query.executeUpdate();
+        query.close();
     }
 }

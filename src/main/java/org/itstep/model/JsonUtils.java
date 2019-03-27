@@ -2,13 +2,19 @@ package org.itstep.model;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.google.gson.JsonParseException;
 import org.itstep.model.entities.Contact;
 
 import java.io.*;
 import java.util.*;
 
 public class JsonUtils {
+
+    public static String readFile(String file) throws FileNotFoundException {
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        StringBuilder str = new StringBuilder();
+        reader.lines().forEach(s -> str.append(s).append("\n"));
+        return str.toString();
+    }
 
     public static void saveContacts(ContactSet contacts, String fileName) {
         try(FileWriter writer = new FileWriter(fileName)) {
@@ -36,8 +42,8 @@ public class JsonUtils {
         return gson.fromJson(reader, Contact.class);
     }
 
-    public static String contactSetToJson(ContactSet set) {
+    public static String contactListToJson(List<Contact> list) {
         Gson gson = new Gson();
-        return gson.toJson(set);
+        return gson.toJson(list);
     }
 }

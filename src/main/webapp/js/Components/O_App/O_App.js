@@ -20,7 +20,7 @@ export default class O_App extends React.Component {
     load() {
         let req = new XMLHttpRequest();
 
-        req.open('GET', './controller?command=list');
+        req.open('GET', './service/list');
 
         let app = this;
 
@@ -97,17 +97,17 @@ export default class O_App extends React.Component {
 
         let json = JSON.stringify(res);
         let req = new XMLHttpRequest();
-        req.open('POST', './controller?command=add');
+        req.open('POST', './service/add');
         let app = this;
 
         req.onreadystatechange = function() {
             if(this.readyState !== 4) return;
-            if(this.responseText === 'true') {
-                let matchingContact = {
-                    name: res.name
-                };
-                app.find(matchingContact,(obj) => (function() {
-                    if(this.readyState !== 4) return;
+
+            let matchingContact = {
+                name: res.name
+            };
+            app.find(matchingContact,(obj) => (function() {
+                if(this.readyState !== 4) return;
                 let list = JSON.parse(this.responseText);
                 if(list.length !== 0) {
                     let ind = undefined;
@@ -124,8 +124,7 @@ export default class O_App extends React.Component {
                     }
                     app.addContact(list[0], ind);
                 }
-                }).bind(obj));
-            }
+            }).bind(obj));
         };
         console.log(json);
         req.send(json);
@@ -135,7 +134,7 @@ export default class O_App extends React.Component {
         let json = JSON.stringify(matchingContact);
         let req = new XMLHttpRequest();
         // should not be POST
-        req.open('POST', './controller?command=find');
+        req.open('POST', './service/find');
         req.onreadystatechange = callbackfn(req);
         req.send(json);
     }

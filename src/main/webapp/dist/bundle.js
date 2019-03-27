@@ -24710,7 +24710,7 @@ function (_React$Component) {
       var pr = [];
 
       for (var p in cont) {
-        if (!cont.hasOwnProperty(p) || cont[p] == false) continue;
+        if (!cont.hasOwnProperty(p) || cont[p] == false || cont[p] === 'null') continue;
 
         if (cont[p][0]['socialNetwork']) {
           pr.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_SocialNetworksProperty_A_SocialNetworksProperty__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -24796,10 +24796,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _O_App_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./O_App.css */ "./src/main/webapp/js/Components/O_App/O_App.css");
 /* harmony import */ var _O_App_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_O_App_css__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _M_Contact_M_Contact__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../M_Contact/M_Contact */ "./src/main/webapp/js/Components/M_Contact/M_Contact.js");
-/* harmony import */ var _A_Property_A_Property__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../A_Property/A_Property */ "./src/main/webapp/js/Components/A_Property/A_Property.js");
-/* harmony import */ var _A_ListProperty_A_ListProperty__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../A_ListProperty/A_ListProperty */ "./src/main/webapp/js/Components/A_ListProperty/A_ListProperty.js");
-/* harmony import */ var _A_SocialNetworksProperty_A_SocialNetworksProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../A_SocialNetworksProperty/A_SocialNetworksProperty */ "./src/main/webapp/js/Components/A_SocialNetworksProperty/A_SocialNetworksProperty.js");
-/* harmony import */ var _A_AddButton_A_AddButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../A_AddButton/A_AddButton */ "./src/main/webapp/js/Components/A_AddButton/A_AddButton.js");
+/* harmony import */ var _A_AddButton_A_AddButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../A_AddButton/A_AddButton */ "./src/main/webapp/js/Components/A_AddButton/A_AddButton.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24817,9 +24814,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
 
 
 
@@ -24856,7 +24850,7 @@ function (_React$Component) {
     key: "load",
     value: function load() {
       var req = new XMLHttpRequest();
-      req.open('GET', './controller?command=list');
+      req.open('GET', './service/list');
       var app = this;
 
       req.onreadystatechange = function () {
@@ -25008,41 +25002,38 @@ function (_React$Component) {
 
       var json = JSON.stringify(res);
       var req = new XMLHttpRequest();
-      req.open('POST', './controller?command=add');
+      req.open('POST', './service/add');
       var app = this;
 
       req.onreadystatechange = function () {
         if (this.readyState !== 4) return;
+        var matchingContact = {
+          name: res.name
+        };
+        app.find(matchingContact, function (obj) {
+          return function () {
+            if (this.readyState !== 4) return;
+            var list = JSON.parse(this.responseText);
 
-        if (this.responseText === 'true') {
-          var matchingContact = {
-            name: res.name
-          };
-          app.find(matchingContact, function (obj) {
-            return function () {
-              if (this.readyState !== 4) return;
-              var list = JSON.parse(this.responseText);
+            if (list.length !== 0) {
+              var ind = undefined;
 
-              if (list.length !== 0) {
-                var ind = undefined;
-
-                for (var i in app.state.list) {
-                  if (app.state.list[i].key === res.name) {
-                    var lst = app.state.list;
-                    delete lst[i];
-                    ind = i;
-                    app.setState({
-                      list: lst
-                    });
-                    break;
-                  }
+              for (var i in app.state.list) {
+                if (app.state.list[i].key === res.name) {
+                  var lst = app.state.list;
+                  delete lst[i];
+                  ind = i;
+                  app.setState({
+                    list: lst
+                  });
+                  break;
                 }
-
-                app.addContact(list[0], ind);
               }
-            }.bind(obj);
-          });
-        }
+
+              app.addContact(list[0], ind);
+            }
+          }.bind(obj);
+        });
       };
 
       console.log(json);
@@ -25054,7 +25045,7 @@ function (_React$Component) {
       var json = JSON.stringify(matchingContact);
       var req = new XMLHttpRequest(); // should not be POST
 
-      req.open('POST', './controller?command=find');
+      req.open('POST', './service/find');
       req.onreadystatechange = callbackfn(req);
       req.send(json);
     }
@@ -25110,7 +25101,7 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: 'app'
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_AddButton_A_AddButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_A_AddButton_A_AddButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
         o_app: this,
         text: 'Add'
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
